@@ -6,36 +6,32 @@ import { FormControl, IconButton, Input, InputAdornment, InputLabel } from '@mui
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useState } from 'react';
 import axios from 'axios';
-import Link from 'next/link';
-
 import { useRouter } from 'next/navigation';
+import router from 'next/router';
 
-
-export default function Loginpage() {
+export default function Registerpage() {
     const [showPassword, setShowPassword] = React.useState(false);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const router = useRouter()
    
-    const Login = async () => {
+
+    const Register = async () => {
       try {
-        const responseLogin = await axios.post("https://4d65-2403-6200-8821-1051-413-3023-7a17-abba.ngrok-free.app/login/", 
+        const responseRegister = await axios.post("https://4d65-2403-6200-8821-1051-413-3023-7a17-abba.ngrok-free.app/register/", 
         {
             username : email ,
             password : password
         })
-        console.log(responseLogin)
-        if(responseLogin.status === 200){
-            router.push('/')
+        console.log(responseRegister)
+        if(responseRegister.status === 200){
+            router.push('/login')
         }
       }
-
       catch (error) {
         console.log(error)
       }
-
     }
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -92,15 +88,9 @@ export default function Loginpage() {
 
      <div className='h-[100%] flex flex-col items-center justify-center justify-between'>
 
-        <button onClick={Login} className=' font-bold w-[270px] h-[40px] rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-400 to-sky-400 to-sky-400 hover:scale-95' >LOGIN</button>
+        <button onClick={Register} className=' font-bold w-[270px] h-[40px] rounded-3xl bg-gradient-to-r from-indigo-500 via-purple-400 to-sky-400 to-sky-400 hover:scale-95' >REGISTER</button>
 
-        <p className='text-gray-500 '>{email}  </p>
-        <p className='text-gray-500 '>{password}  </p>
-
-        <div className='flex'>
-        <p className='text-gray-500 mb-[5px]'>Don't have an account?</p>
-        <Link href={"register"} className='text-gray-500 hover:text-blue-700 mb-[5px] ml-[5px]'>Sing up</Link>
-        </div>
+       
      </div>
         
 
