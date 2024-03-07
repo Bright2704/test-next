@@ -1,4 +1,5 @@
 "use client"
+import { Login } from "@mui/icons-material";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -34,6 +35,8 @@ export default function Home() {
       <button onClick={decrease}>Decrease</button>
       <br/>
       <Link href={`/flex`}>Flex</Link>
+      <br/>
+      <button onClick={Login}>Login</button>
      </div>
     </div>
   );
